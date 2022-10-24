@@ -1,0 +1,5 @@
+name: Card game
+type: module
+description: Provides an HTTP API endpoint for a memory game.
+package: Custom
+core_version_requirement: ^9 || ^10

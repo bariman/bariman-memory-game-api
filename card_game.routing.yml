@@ -1,0 +1,8 @@
+card_game.card_grid:
+  path: '/code-challenge/card-grid'
+  defaults:
+    _controller: '\Drupal\card_game\Controller\CardGameController::getCards'
+    _title: 'Card game report'
+  requirements:
+    _permission: 'access content'
+
