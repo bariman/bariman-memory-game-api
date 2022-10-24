@@ -1,5 +1,5 @@
 {
-    "name": "bariman/memory-game-api",
+    "name": "bariman/card_game",
     "description": "Provides an HTTP API endpoint for a card memory game.",
     "type": "drupal-module",
     "require": {
