@@ -1,0 +1,16 @@
+{
+    "name": "bariman/memory-game-api",
+    "description": "Provides an HTTP API endpoint for a card memory game.",
+    "type": "drupal-module",
+    "require": {
+        "drupal/core": "^8.8.0 || ^9.0"
+    },
+    "license": "GPL-2.0-or-later",
+    "authors": [
+        {
+            "name": "Dmitrii Larionov",
+            "email": "bariman.ld@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev"
+}
