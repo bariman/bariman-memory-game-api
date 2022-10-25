@@ -28,15 +28,17 @@ class CardGameController extends ControllerBase {
         'data' => $data,
       ]);
     }
-    $cardCount = ((int) $rows * (int) $columns) / 2;
-    $uniqueCards = $this->generateUniqueCards($cardCount);
+
+    $cardCount = ((int) $rows * (int) $columns);
+    $uniqueCardCount = $cardCount / 2;
+    $uniqueCards = $this->generateUniqueCards($uniqueCardCount);
     $dealtCards = $this->generateDeck($uniqueCards, $rows, $columns);
     $data->cards = $dealtCards;
     return new JsonResponse([
       'meta' => [
         'success' => TRUE,
-        'cardCount' => 4,
-        'uniqueCardCount' => 2,
+        'cardCount' => $cardCount,
+        'uniqueCardCount' => $uniqueCardCount,
         'uniqueCards' => $uniqueCards,
       ],
       'data' => $data,
@@ -66,6 +68,12 @@ class CardGameController extends ControllerBase {
     }
     if ($columns > 6) {
       return 'Column count is greater than 6';
+    }
+    if ($rows <= 0) {
+      return 'Row count is less or equal to 0';
+    }
+    if ($columns <= 0) {
+      return 'Column count is less or equal to 0';
     }
     if ($columns % 2 == 1 && $rows % 2 == 1) {
       return "Either `rows` or `columns` needs to be an even number.";
