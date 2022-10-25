@@ -18,19 +18,20 @@ class CardGameController extends ControllerBase {
     $rows = $request->query->get('rows');
     $columns = $request->query->get('columns');
     $message = $this->validateParams($rows, $columns);
-
+    $data = new \stdClass();
     if ($message !== TRUE) {
       return new JsonResponse([
         'meta' => [
           'success' => FALSE,
           'message' => $message,
         ],
-        'data' => [],
+        'data' => $data,
       ]);
     }
     $cardCount = ((int) $rows * (int) $columns) / 2;
     $uniqueCards = $this->generateUniqueCards($cardCount);
     $dealtCards = $this->generateDeck($uniqueCards, $rows, $columns);
+    $data->cards = $dealtCards;
     return new JsonResponse([
       'meta' => [
         'success' => TRUE,
@@ -38,9 +39,7 @@ class CardGameController extends ControllerBase {
         'uniqueCardCount' => 2,
         'uniqueCards' => $uniqueCards,
       ],
-      'data' => [
-        'cards' => $dealtCards,
-      ],
+      'data' => $data,
     ]);
   }
 
