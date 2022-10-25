@@ -6,7 +6,7 @@ use Drupal\Core\Url;
 use Drupal\KernelTests\KernelTestBase;
 
 /**
- * Test description.
+ * Test memory game endpoint.
  *
  * @group card_game
  */
@@ -33,7 +33,7 @@ class CardGameResponseTest extends KernelTestBase {
    * Test even rows and columns.
    */
   public function testEvenCardsResponse() {
-    $path = Url::fromUri('base:/' . 'code-challenge/card-grid?rows=3&columns=5')
+    $path = Url::fromUri('base:/' . 'code-challenge/card-grid',['query' => ['rows' => 5, 'columns' => 5]])
       ->setAbsolute()
       ->toString();
     $response = file_get_contents($path);
