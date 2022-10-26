@@ -15,8 +15,8 @@ class CardGameController extends ControllerBase {
    * Builds the response.
    */
   public function getCards(Request $request) {
-    $rows = $request->query->get('rows');
-    $columns = $request->query->get('columns');
+    $rows = (int) $request->query->get('rows');
+    $columns = (int) $request->query->get('columns');
     $message = $this->validateParams($rows, $columns);
     $data = new \stdClass();
     if ($message !== TRUE) {
@@ -48,21 +48,15 @@ class CardGameController extends ControllerBase {
   /**
    * Validates rows and columns.
    *
-   * @param string $rows
+   * @param int $rows
    *   Rows.
-   * @param string $columns
+   * @param int $columns
    *   Columns.
    *
    * @return bool|string
    *   Error message or true in case of success.
    */
-  protected function validateParams($rows, $columns) {
-    if (is_null($rows) || is_null($columns)) {
-      return "Both 'rows' and 'columns' need to be set";
-    }
-    if (!is_numeric($rows) || !is_numeric($columns)) {
-      return "Both 'rows' and 'columns' need to be integer numbers";
-    }
+  protected function validateParams(int $rows, int $columns) {
     if ($rows > 6) {
       return 'Row count is greater than 6';
     }
@@ -70,10 +64,10 @@ class CardGameController extends ControllerBase {
       return 'Column count is greater than 6';
     }
     if ($rows <= 0) {
-      return 'Row count is less or equal to 0';
+      return 'Row count should be greater than 0';
     }
     if ($columns <= 0) {
-      return 'Column count is less or equal to 0';
+      return 'Column count should be greater than 0';
     }
     if ($columns % 2 == 1 && $rows % 2 == 1) {
       return "Either `rows` or `columns` needs to be an even number.";
