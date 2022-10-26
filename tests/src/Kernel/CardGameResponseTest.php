@@ -33,7 +33,13 @@ class CardGameResponseTest extends KernelTestBase {
    * Test even rows and columns.
    */
   public function testEvenCardsResponse() {
-    $path = Url::fromUri('base:/' . 'code-challenge/card-grid',['query' => ['rows' => 5, 'columns' => 5]])
+    $path = Url::fromUri('base:/' . 'code-challenge/card-grid',
+      [
+        'query' => [
+          'rows' => 5,
+          'columns' => 5,
+        ],
+      ])
       ->setAbsolute()
       ->toString();
     $response = file_get_contents($path);
