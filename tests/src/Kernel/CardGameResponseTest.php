@@ -2,7 +2,6 @@
 
 namespace Drupal\Tests\card_game\Kernel;
 
-use Drupal\Core\Url;
 use Drupal\KernelTests\KernelTestBase;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\HttpKernelInterface;
@@ -19,38 +18,6 @@ class CardGameResponseTest extends KernelTestBase {
    */
   protected static $modules = ['card_game'];
 
-//  /**
-//   * Check if response is in json format.
-//   */
-//  public function testJsonResponse() {
-//    $http_kernel = $this->container->get('http_kernel');
-//    $request = Request::create('/code-challenge/card-grid');
-//    $response = $http_kernel->handle($request, HttpKernelInterface::SUB_REQUEST);
-//    $headers = $response->headers;
-//    $json = json_decode($response->getContent());
-//    $this->assertFalse($json->meta->success);
-//    $contentType = $headers->get('Content-Type');
-//    $this->assertEquals('application/json', $contentType);
-//  }
-//
-//  /**
-//   * Test even rows and columns.
-//   */
-//  public function testEvenCardsResponse() {
-//    $path = Url::fromUri('base:/' . 'code-challenge/card-grid',
-//      [
-//        'query' => [
-//          'rows' => 5,
-//          'columns' => 5,
-//        ],
-//      ])
-//      ->setAbsolute()
-//      ->toString();
-//    $response = file_get_contents($path);
-//    $this->assertStringContainsString("Either `rows` or `columns` needs to be an even number", $response);
-//    $this->assertStringContainsString('"success":false', $response);
-//  }
-
   /**
    * Data provider for testFailureResponse().
    */
@@ -62,7 +29,6 @@ class CardGameResponseTest extends KernelTestBase {
       ['abc', 4, 'Row count should be greater than 0'],
     ];
   }
-
 
   /**
    * Check if response is in json format.
@@ -92,7 +58,6 @@ class CardGameResponseTest extends KernelTestBase {
     ];
   }
 
-
   /**
    * Check if response is in json format.
    *
@@ -113,6 +78,5 @@ class CardGameResponseTest extends KernelTestBase {
     $this->assertCount($uniqueCardCount, $json->meta->uniqueCards);
     $this->assertCount($rows, $json->data->cards);
   }
-
 
 }
