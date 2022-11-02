@@ -3,6 +3,6 @@ card_game.card_grid:
   defaults:
     _controller: '\Drupal\card_game\Controller\CardGameController::getCards'
     _title: 'Card game report'
+  methods: [GET]
   requirements:
     _permission: 'access content'
-
