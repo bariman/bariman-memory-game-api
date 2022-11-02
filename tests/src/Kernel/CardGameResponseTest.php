@@ -44,6 +44,7 @@ class CardGameResponseTest extends KernelTestBase {
       ->toString();
     $response = file_get_contents($path);
     $this->assertStringContainsString("Either `rows` or `columns` needs to be an even number", $response);
+    $this->assertStringContainsString('"success":false', $response);
   }
 
 }
