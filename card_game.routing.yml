@@ -5,4 +5,4 @@ card_game.card_grid:
     _title: 'Card game report'
   methods: [GET]
   requirements:
-    _permission: 'access content'
+    _access: 'TRUE'
