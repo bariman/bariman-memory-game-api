@@ -37,11 +37,13 @@ class CardGameResponseTest extends KernelTestBase {
    */
   public function testFailureResponse($rows, $columns, $message) {
     $http_kernel = $this->container->get('http_kernel');
-    $request = Request::create('/code-challenge/card-grid', 'GET',
-      [
-        'rows'=> $rows,
-        'columns' => $columns,
-      ]);
+    $request = Request::create(
+          '/code-challenge/card-grid', 'GET',
+          [
+            'rows' => $rows,
+            'columns' => $columns,
+          ]
+      );
     $response = $http_kernel->handle($request, HttpKernelInterface::SUB_REQUEST);
     $json = json_decode($response->getContent());
     $this->assertFalse($json->meta->success);
@@ -65,11 +67,13 @@ class CardGameResponseTest extends KernelTestBase {
    */
   public function testSuccessResponse($rows, $columns, $cardCount, $uniqueCardCount) {
     $http_kernel = $this->container->get('http_kernel');
-    $request = Request::create('/code-challenge/card-grid', 'GET',
-      [
-        'rows'=> $rows,
-        'columns' => $columns,
-      ]);
+    $request = Request::create(
+          '/code-challenge/card-grid', 'GET',
+          [
+            'rows' => $rows,
+            'columns' => $columns,
+          ]
+      );
     $response = $http_kernel->handle($request, HttpKernelInterface::SUB_REQUEST);
     $json = json_decode($response->getContent());
     $this->assertTrue($json->meta->success);
