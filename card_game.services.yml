@@ -1,0 +1,3 @@
+services:
+  card_game.memory_game:
+    class: Drupal\card_game\Game\CardMemoryGame
